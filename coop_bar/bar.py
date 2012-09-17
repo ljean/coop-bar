@@ -12,7 +12,6 @@ class CoopBar:
         if not self.__dict__: #Don't reload for each instance
             self._callbacks = []
             self._headers = []
-            self._footer = []
             coop_bar_modules = getattr(settings, 'COOP_BAR_MODULES', None)
             if coop_bar_modules:
                 for module_name in coop_bar_modules:
@@ -20,8 +19,8 @@ class CoopBar:
                         app_admin_bar_module = import_module(module_name)
                         loader_fct = getattr(app_admin_bar_module, 'load_commands')
                         loader_fct(self)
-                    except ImportError:
-                        raise ImportError(u"coop_bar : error while loading '{0}'. Check COOPBAR_MODULES in settings".format(module_name))
+                    except ImportError, msg:
+                        raise ImportError(u"coop_bar : error while loading '{0}': {1}".format(module_name, msg))
             else:
                 for app in settings.INSTALLED_APPS:
                     try:
@@ -38,9 +37,6 @@ class CoopBar:
 
     def register_header(self, callback):
         self._headers.append(callback)
-
-    def register_footer(self, callback):
-        self._footer.append(callback)
 
     def register_command(self, callback):
         self._callbacks.append(callback)
@@ -81,12 +77,3 @@ class CoopBar:
             if html:
                 headers.append(html)
         return headers
-
-    def get_footer(self, request, context):
-        footer = []
-        for c in self._footer:
-            html = c(request, context)
-            if html:
-                footer.append(html)
-        return footer
-

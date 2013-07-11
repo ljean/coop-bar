@@ -15,17 +15,17 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name ='coop-bar',
+    name ='apidev-coop_bar',
     version = VERSION,
-    description ='Pluggable admin bar system , works well with coop-cms',
+    description ='Pluggable admin bar system , works well with coop_cms',
     long_description = open('README.rst').read(),
     packages = ['coop_bar','coop_bar.templatetags'],
     include_package_data = True,
     author = 'Luc Jean',
     author_email = 'ljean@apidev.fr',
     license ='BSD',
-    url = "https://github.com/quinode/coop-bar/",
-    download_url = "https://github.com/quinode/coop-bar/tarball/master",
+    url = "https://github.com/ljean/coop-bar/",
+    download_url = "https://github.com/ljean/coop-bar/tarball/master",
     zip_safe = False,
     classifiers = [
         'Development Status :: 4 - Beta',

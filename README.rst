@@ -1,4 +1,4 @@
-coop-bar, configurable toolbar
+apidev-coop_bar, configurable toolbar
 ===============================================
 
 * `What is coop_bar good for?`_
@@ -60,8 +60,10 @@ In your base.html, add the following template tags::
 License
 =======
 
+apidev-coop_bar in a fork of credis/coop-bar (see https://github.com/credis/coop-bar).
+
 `Fugue icon set <http://p.yusukekamiyamane.com/>`_  by Yusuke Kamiyamane. All rights reserved. Licensed under a Creative Commons Attribution 3.0 License.
 
-coop-bar itself uses the same license as Django (BSD).
+apidev-coop_bar itself uses the same license as Django (BSD).
 
-coop-bar development was funded by `CREDIS <http://credis.org/>`_, FSE (European Social Fund) and Conseil Regional d'Auvergne.
+credis/coop-bar development was funded by `CREDIS <http://credis.org/>`_, FSE (European Social Fund) and Conseil Regional d'Auvergne.

@@ -1,3 +1,12 @@
+<script>
+	$(function() {
+		$(".coop-bar-sign").click(function() {
+			var wrapper = $(this).closest(".coop-bar-wrapper");
+			wrapper.addClass("shown");
+		})
+		return false;
+	})
+</script>
 <div class="coop-bar-wrapper">
 	<div class="coop-bar-sign"></div>
 	<div class="coop-bar">

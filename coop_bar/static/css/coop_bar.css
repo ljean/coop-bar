@@ -83,6 +83,10 @@
   border-right: 20px solid #eee;/*transparent*/;
 }
 
+.coop-bar-wrapper .coop-bar-sign.is-draft{
+	border-bottom: 20px solid red;
+}
+
 .coop-bar-wrapper:hover .coop-bar-sign {
   display: none;
 }

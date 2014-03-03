@@ -69,7 +69,8 @@
   display: none;
 }
 
-.coop-bar-wrapper:hover .coop-bar {
+.coop-bar-wrapper:hover .coop-bar,
+.coop-bar-wrapper.shown .coop-bar {
   display: block;
 }
 
@@ -87,6 +88,7 @@
 	border-bottom: 20px solid red;
 }
 
-.coop-bar-wrapper:hover .coop-bar-sign {
+.coop-bar-wrapper:hover .coop-bar-sign,
+.coop-bar-wrapper.shown .coop-bar-sign {
   display: none;
 }

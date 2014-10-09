@@ -12,6 +12,7 @@ class CoopBar:
         if not self.__dict__: #Don't reload for each instance
             self._callbacks = []
             self._headers = []
+            self._css_classes = []
             coop_bar_modules = getattr(settings, 'COOP_BAR_MODULES', None)
             if coop_bar_modules:
                 for module_name in coop_bar_modules:
@@ -43,6 +44,9 @@ class CoopBar:
 
     def register_separator(self):
         self._callbacks.append(None)
+        
+    def register_css_classes(self, callback):
+        self._css_classes.append(callback)
 
     def register(self, list_of_list_of_cmds):
         for list_of_cmds in list_of_list_of_cmds:
@@ -77,3 +81,14 @@ class CoopBar:
             if html:
                 headers.append(html)
         return headers
+    
+    def get_css_classes(self, request, context):
+        css_classes = []
+        for c in self._css_classes:
+            css_class = c(request, context)
+            if css_class:
+                if type(css_class) in (list, tuple):
+                    css_classes.extend(css_class)
+                else:
+                    css_classes.append(css_class)
+        return u" ".join(list(set(css_classes)))

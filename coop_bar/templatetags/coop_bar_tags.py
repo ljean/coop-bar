@@ -13,10 +13,11 @@ class CoopBarNode(template.Node):
         request = context.get("request", None)
         commands = CoopBar().get_commands(request, context)
         if commands: #hide admin-bar if nothing to display
-            context_dict = {'commands': commands}
-            for var_name in ('article', 'object'):
-                var = context.get(var_name, None)
-                context_dict[var_name] = var
+            css_classes = CoopBar().get_css_classes(request, context)
+            context_dict = {'commands': commands, 'css_classes': css_classes}
+            #for var_name in ('article', 'object'):
+            #    var = context.get(var_name, None)
+            #    context_dict[var_name] = var
             t = get_template("coop_bar.html")
             return t.render(Context(context_dict))
         return u''

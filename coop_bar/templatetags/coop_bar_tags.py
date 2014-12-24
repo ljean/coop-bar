@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from django import template
+from django.conf import settings
 from django.template.loader import get_template
 from django.template import Context
-register = template.Library()
+
+from coop_bar import get_version
 from coop_bar.bar import CoopBar
-from django.conf import settings
+
+register = template.Library()
+
 
 class CoopBarNode(template.Node):
 
@@ -31,8 +35,9 @@ class CoopBarHeaderNode(template.Node):
     def render(self, context):
         request = context.get("request", None)
         STATIC_URL = getattr(settings, 'STATIC_URL', '')
-        headers = [u'<link rel="stylesheet" href="{0}css/coop_bar.css" type="text/css" />'.format(STATIC_URL)]
-        #headers += [u'<script src="{0}js/jquery-ui-1.8.14.custom.min.js"></script>'.format(STATIC_URL)]
+        url = u'<link rel="stylesheet" href="{0}css/coop_bar.css?v={1}" type="text/css" />'.format(
+            STATIC_URL, get_version())
+        headers = [url]
         headers += CoopBar().get_headers(request, context)
         return "\n".join(headers)
 

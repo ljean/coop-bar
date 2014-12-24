@@ -1,3 +1,4 @@
+
 .coop-bar-wrapper .coop-bar {
 	position: fixed;
 	top: 10px;
@@ -80,6 +81,7 @@
   right: 0;
   width: 0;
   height: 0;
+  z-index: 99999;
   border-bottom: 20px solid #444;
   border-right: 20px solid #eee;/*transparent*/;
 }

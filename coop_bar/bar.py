@@ -1,15 +1,23 @@
 # -*- coding: utf-8 -*-
 
-from django.utils.importlib import import_module
+try:
+    from importlib import import_module
+except ImportError:
+    # Deprecated in Django 1.9
+    from django.utils.importlib import import_module
+
 from django.conf import settings
 
+
 class CoopBar:
+    """The main class"""
+
     __we_all_are_one = {}
 
     def __init__(self):
-        self.__dict__ = self.__we_all_are_one #Borg pattern
+        self.__dict__ = self.__we_all_are_one  # Borg pattern
 
-        if not self.__dict__: #Don't reload for each instance
+        if not self.__dict__:  # Don't reload for each instance
             self._callbacks = []
             self._headers = []
             self._css_classes = []
@@ -33,7 +41,7 @@ class CoopBar:
                             #every item it want to insert in the bar
                             loader_fct = getattr(app_admin_bar_module, 'load_commands')
                             loader_fct(self)
-                    except ImportError:
+                    except ImportError, msg:
                         pass
 
     def register_header(self, callback):
@@ -57,8 +65,8 @@ class CoopBar:
     def get_commands(self, request, context):
         commands = []
         separator = '<div class="separator"></div>'
-        for c in self._callbacks:
-            if c == None:
+        for the_callback in self._callbacks:
+            if the_callback is None:
                 #Replace None by separator. Avoid 2 following separators
                 if commands and commands[-1] != separator:
                     html = separator
@@ -67,7 +75,7 @@ class CoopBar:
             else:
                 #when a page wants to display the admin_bar
                 #calls the registred callback in order to know what to display
-                html = c(request, context)
+                html = the_callback(request, context)
             if html:
                 commands.append(html)
         if commands and commands[-1] == separator:

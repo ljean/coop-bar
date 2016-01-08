@@ -1,5 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+import os
 
 try:
     from setuptools import setup, find_packages
@@ -10,24 +11,25 @@ except ImportError:
 
 VERSION = __import__('coop_bar').__version__
 
-import os
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(
-    name ='apidev-coop_bar',
-    version = VERSION,
-    description ='Pluggable admin bar system , works well with coop_cms',
-    long_description = open('README.rst').read(),
-    packages = ['coop_bar','coop_bar.templatetags'],
-    include_package_data = True,
-    author = 'Luc Jean',
-    author_email = 'ljean@apidev.fr',
-    license ='BSD',
-    url = "https://github.com/ljean/coop-bar/",
-    download_url = "https://github.com/ljean/coop-bar/tarball/master",
-    zip_safe = False,
-    classifiers = [
+    name='apidev-coop_bar',
+    version=VERSION,
+    description='Pluggable admin bar system , works well with coop_cms',
+    long_description=open('README.rst').read(),
+    packages=['coop_bar','coop_bar.templatetags'],
+    include_package_data=True,
+    author='Luc Jean',
+    author_email='ljean@apidev.fr',
+    license='BSD',
+    url="https://github.com/ljean/coop-bar/",
+    download_url="https://github.com/ljean/coop-bar/tarball/master",
+    zip_safe=False,
+    classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',

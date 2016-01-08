@@ -11,19 +11,13 @@ apidev-coop_bar, configurable toolbar
 
 What is coop_bar good for?
 ------------------------------------
-django-coop is a set of several apps for building cooperative websites. It is based on Django.
-
-Thses apps may need a to display an admin toolbar. For example, the CMS component may use this bar
-to display edit, cancel and save links.
-
-coop_bar tries to provide a simple and configurable mechanism
+coop_bar is a django app which provides an menu bar with external auto-registred menu items.
 
 .. _quick-start:
 
 Quick start
 ------------------------------------
 In settings.py, add 'coop_bar' (with an underscore) to the INSTALLED_APPS 
-Under Django 1.3, the static folder should be found automatically, as the templates folder
 In urls.py add (r'^coop_bar/', include('coop_bar.urls')) to your urlpatterns
 
 For each app needing to add links to coop_bar, create a coop_bar_cfg.py file

@@ -3,9 +3,10 @@
 Customizable tool bar
 """
 
-from django import VERSION
+from django import VERSION as DJANGO_VERSION
 
-if VERSION > (1, 7, 0):
+
+if DJANGO_VERSION > (1, 7, 0):
     from django.apps import AppConfig
 
     class CoopBarAppConfig(AppConfig):

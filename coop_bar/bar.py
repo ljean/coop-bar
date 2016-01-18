@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
-try:
-    from importlib import import_module
-except ImportError:
-    # Deprecated in Django 1.9
-    from django.utils.importlib import import_module
+
+from importlib import import_module
 
 from django.conf import settings
 
@@ -33,12 +30,12 @@ class CoopBar:
             else:
                 for app in settings.INSTALLED_APPS:
                     try:
-                        #load dynamically the admin_bar module of all apps
+                        # load dynamically the admin_bar module of all apps
                         app_admin_bar_module = import_module(app+'.coop_bar_cfg')
                         if hasattr(app_admin_bar_module, 'load_commands'):
-                            #call the load_commands function in this module
-                            #This function should call the AdminBar:register_command for
-                            #every item it want to insert in the bar
+                            # call the load_commands function in this module
+                            # This function should call the AdminBar:register_command for
+                            # every item it want to insert in the bar
                             loader_fct = getattr(app_admin_bar_module, 'load_commands')
                             loader_fct(self)
                     except ImportError, msg:
@@ -67,14 +64,14 @@ class CoopBar:
         separator = '<div class="separator"></div>'
         for the_callback in self._callbacks:
             if the_callback is None:
-                #Replace None by separator. Avoid 2 following separators
+                # Replace None by separator. Avoid 2 following separators
                 if commands and commands[-1] != separator:
                     html = separator
                 else:
                     html = ''
             else:
-                #when a page wants to display the admin_bar
-                #calls the registred callback in order to know what to display
+                # when a page wants to display the admin_bar
+                # calls the registred callback in order to know what to display
                 html = the_callback(request, context)
             if html:
                 commands.append(html)

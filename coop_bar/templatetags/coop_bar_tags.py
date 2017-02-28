@@ -29,8 +29,20 @@ def coop_bar(parser, token):
 
 
 class CoopBarHeaderNode(template.Node):
+
+    def __init__(self, option):
+        self.option = option
+
     def render(self, context):
         request = context.get("request", None)
+
+        if request:
+            if self.option == "admin-only" and not request.user.is_staff:
+                return ''
+
+            if self.option == "auth-only" and not request.user.is_authenticated():
+                return ''
+
         static_url = getattr(settings, 'STATIC_URL', '')
         url = u'<link rel="stylesheet" href="{0}css/coop_bar.css?v={1}" type="text/css" />'.format(
             static_url, get_version()
@@ -41,5 +53,7 @@ class CoopBarHeaderNode(template.Node):
 
 @register.tag
 def coop_bar_headers(parser, token):
-    return CoopBarHeaderNode()
+    args = token.split_contents()
+    option = args[1] if len(args) > 1 else ''
+    return CoopBarHeaderNode(option)
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 
 from importlib import import_module
 
@@ -26,7 +27,7 @@ class CoopBar:
                         loader_fct = getattr(app_admin_bar_module, 'load_commands')
                         loader_fct(self)
                     except ImportError as msg:
-                        raise ImportError(u"coop_bar : error while loading '{0}': {1}".format(module_name, msg))
+                        raise ImportError("coop_bar : error while loading '{0}': {1}".format(module_name, msg))
             else:
                 for app in settings.INSTALLED_APPS:
                     try:
@@ -81,19 +82,19 @@ class CoopBar:
 
     def get_headers(self, request, context):
         headers = []
-        for c in self._headers:
-            html = c(request, context)
+        for header in self._headers:
+            html = header(request, context)
             if html:
                 headers.append(html)
         return headers
     
     def get_css_classes(self, request, context):
         css_classes = []
-        for c in self._css_classes:
-            css_class = c(request, context)
+        for css_class in self._css_classes:
+            css_class = css_class(request, context)
             if css_class:
                 if type(css_class) in (list, tuple):
                     css_classes.extend(css_class)
                 else:
                     css_classes.append(css_class)
-        return u" ".join(list(set(css_classes)))
+        return " ".join(list(set(css_classes)))

@@ -3,12 +3,10 @@
 Customizable tool bar
 """
 
-from django import VERSION as DJANGO_VERSION
+from __future__ import unicode_literals
 
+from django.apps import AppConfig
 
-if DJANGO_VERSION > (1, 7, 0):
-    from django.apps import AppConfig
-
-    class CoopBarAppConfig(AppConfig):
-        name = 'coop_bar'
-        verbose_name = "coop Bar"
+class CoopBarAppConfig(AppConfig):
+    name = 'coop_bar'
+    verbose_name = "coop Bar"

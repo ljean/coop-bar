@@ -25,7 +25,7 @@ class CoopBar:
                         app_admin_bar_module = import_module(module_name)
                         loader_fct = getattr(app_admin_bar_module, 'load_commands')
                         loader_fct(self)
-                    except ImportError, msg:
+                    except ImportError as msg:
                         raise ImportError(u"coop_bar : error while loading '{0}': {1}".format(module_name, msg))
             else:
                 for app in settings.INSTALLED_APPS:
@@ -38,7 +38,7 @@ class CoopBar:
                             # every item it want to insert in the bar
                             loader_fct = getattr(app_admin_bar_module, 'load_commands')
                             loader_fct(self)
-                    except ImportError, msg:
+                    except ImportError as msg:
                         pass
 
     def register_header(self, callback):

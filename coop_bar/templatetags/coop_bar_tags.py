@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django import template
 from django.conf import settings
 from django.template.loader import get_template
-# from django.template import Context
+from django.utils.text import mark_safe
 
 from coop_bar import get_version
 from coop_bar.bar import CoopBar
@@ -51,7 +51,7 @@ class CoopBarHeaderNode(template.Node):
         url = '<link rel="stylesheet" href="{0}css/coop_bar.css?v={1}" type="text/css" />'.format(
             static_url, get_version()
         )
-        headers = [url]
+        headers = [mark_safe(url)]
         headers += CoopBar().get_headers(request, context_to_dict(context))
         return "\n".join(headers)
 

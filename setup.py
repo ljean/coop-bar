@@ -23,7 +23,7 @@ setup(
     version=VERSION,
     description='Pluggable admin bar system , works well with coop_cms',
     long_description=open('README.rst').read(),
-    packages=['coop_bar','coop_bar.templatetags'],
+    packages=find_packages(),
     include_package_data=True,
     author='Luc Jean',
     author_email='ljean@apidev.fr',

@@ -7,13 +7,28 @@ from django.conf import settings
 
 def make_link(url, label, icon, id=None, classes=None):
     """make a link"""
-    icon_url = settings.STATIC_URL + icon
+    icon_url = icon
+    print(">>>>", icon_url)
     
     extra_args = ['id="{0}"'.format(id)] if id else []
     if classes:
         extra_args += ['class="{0}"'.format(' '.join(classes))]
         
-    return '<a href="{url}" style="background-image:url({icon_url})" {args}>{label}</a>'.format(
+    return '<a href="{url}" {args}><i class="fas fa-{icon_url}"></i> {label}</a>'.format(
+        url=url, icon_url=icon_url, args=' '.join(extra_args), label=label
+    )
+
+
+def make_link_balafon(url, label, icon, id=None, classes=None):
+    """make a link"""
+    icon_url = settings.STATIC_URL + icon
+    print(">>>>", icon_url)
+    
+    extra_args = ['id="{0}"'.format(id)] if id else []
+    if classes:
+        extra_args += ['class="{0}"'.format(' '.join(classes))]
+    
+    return '<a href="{url}" {args}><img src="{icon_url}" /> {label}</a>'.format(
         url=url, icon_url=icon_url, args=' '.join(extra_args), label=label
     )
 

@@ -51,7 +51,8 @@ class CoopBarHeaderNode(template.Node):
         url = '<link rel="stylesheet" href="{0}css/coop_bar.css?v={1}" type="text/css" />'.format(
             static_url, get_version()
         )
-        headers = [mark_safe(url)]
+        headers = [mark_safe(url), mark_safe('<link rel="stylesheet" href="{0}fontawesome/css/all.css" type="text/css" />'.format(static_url))]
+        print("HEADERS: ", headers)
         headers += CoopBar().get_headers(request, context_to_dict(context))
         return "\n".join(headers)
 

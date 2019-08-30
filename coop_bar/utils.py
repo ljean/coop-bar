@@ -8,8 +8,6 @@ from django.conf import settings
 def make_link(url, label, icon, id=None, classes=None):
     """make a link"""
     icon_url = icon
-    print(">>>>", icon_url)
-    
     extra_args = ['id="{0}"'.format(id)] if id else []
     if classes:
         extra_args += ['class="{0}"'.format(' '.join(classes))]
@@ -22,8 +20,6 @@ def make_link(url, label, icon, id=None, classes=None):
 def make_link_balafon(url, label, icon, id=None, classes=None):
     """make a link"""
     icon_url = settings.STATIC_URL + icon
-    print(">>>>", icon_url)
-    
     extra_args = ['id="{0}"'.format(id)] if id else []
     if classes:
         extra_args += ['class="{0}"'.format(' '.join(classes))]

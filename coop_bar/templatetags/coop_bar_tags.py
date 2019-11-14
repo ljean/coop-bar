@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django import template
 from django.conf import settings
 from django.template.loader import get_template
-from django.utils.text import mark_safe
+from django.utils.safestring import mark_safe
 
 from coop_bar import get_version
 from coop_bar.bar import CoopBar
